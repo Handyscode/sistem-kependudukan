@@ -20,7 +20,7 @@ class PagesController extends Controller
     }
 
     public function dashboard(){
-        $penduduks = Penduduk::orderBy('created_at', 'DESC')->get();
+        $penduduks = Penduduk::where('id_user', Auth::user()->id_user)->orderBy('created_at', 'DESC')->get();
         if (Auth::user()->role == 'admin') {
             $pendLaki = Penduduk::where('jenis_kelamin', 'L')->count();
             $pendPerem = Penduduk::where('jenis_kelamin', 'P')->count();
